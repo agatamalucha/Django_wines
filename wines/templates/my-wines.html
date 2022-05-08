@@ -4,119 +4,117 @@
 {% block content %}
 
 <div id="page-index">
-  <div class="dashboard-cards">
-    <br><br><br>
+    <div class="dashboard-cards">
+        <br><br><br>
 
-
-    <div class="row plain-element">
-      <div class="col s12 m12 l1 plain-element"></div>
-      <div class="col s12 m12 l10  plain-element" id="restaurantsColumn">
 
         <div class="row plain-element">
-          <div class="card card-side wine-dashboard">
-            <a href="{% url 'wines:my-wines' %}">
-              <div class="section-heading">
-                Favourite <b>Wines </b>
-              </div>
-            </a>
-            <div class="row row-search">
-              <div class="row plain-element left-align">
+            <div class="col col-sm-12 col-md-12 col-lg-1 plain-element"></div>
+            <div class="col col-sm-12 col-md-12 col-lg-10  plain-element" id="restaurantsColumn">
+
+                <div class="row plain-element">
+                    <div class="card card-side wine-dashboard">
+                        <a href="{% url 'wines:my-wines' %}">
+                            <div class="section-heading">
+                                Favourite <b>Wines </b>
+                            </div>
+                        </a>
+                        <div class="row row-search">
 
 
-                {% if wine_types %}
-                {% for element in wine_types %}
+                            {% if wine_types %}
+                            {% for element in wine_types %}
 
-                <form action="{% url 'wines:search-wine' %}" method="GET">
-                  {% csrf_token %}
-                  <input type="hidden" id="query" name="query" value="{{element}}">
-                  <div class="col s3 m2 l2 col-link">
-                    <button type="submit" class="btn btn-pill"> {{element}}</button>
-                  </div>
-                </form>
+                            <form action="{% url 'wines:search-wine' %}"
+                                  class="col col-sm-12 col-md-4 col-lg-2   add-form" method="GET">
+                                {% csrf_token %}
+                                <input type="hidden" id="query" name="query" value="{{element}}">
 
-                {% endfor %}
-                {% endif %}
-              </div>
+                                <button type="submit" class="btn btn-pill"> {{element}}</button>
 
-            </div>
-            <br>
-            <div class="row plain-element">
-              <div class="row plain-element">
-                <div class="col s12 m12 l12 plain-element">
-                  {% for element in wines %}
-                  <div class="col s4 m3 l2">
+                            </form>
 
-                    <div class="wine-card {{ element.colour }}-wine">
-                      <div class="row plain-element">
-                        <img src="{{ element.image }}" alt="wine" class="img-restaurants">
+                            {% endfor %}
+                            {% endif %}
+                        </div>
 
-                      </div>
-                      <div class="row plain-element">
-                        <h5>{{element.name}}</h5>
-                        <h6>{{element.strain}} </h6>
+                    </div>
+                    <br>
+                    <div class="row plain-element">
                         <div class="row plain-element">
 
-                          <div class="col s6 m6 l6 left-align">
-                            <p>{{element.price}}€ </p>
-                          </div>
-                          <div class="col s6 m6 l6 right-align">
-                            <p>{{element.rating}}/5</p>
-                          </div>
+                            {% for element in wines %}
+
+                            <div class="col col-sm-4 col-md-3 col-lg-2">
+                                <div class="wine-card {{ element.colour }}-wine">
+                                    <div class="row plain-element">
+                                        <img src="{{ element.image }}" alt="wine" class="img-restaurants">
+
+                                    </div>
+                                    <div class="row plain-element">
+                                        <h5>{{element.name}}</h5>
+                                        <h6>{{element.strain}} </h6>
+                                        <div class="row plain-element">
+
+                                            <div class="col col-sm-6 col-md-6 col-lg-6 left-align">
+                                                <p>{{element.price}}€ </p>
+                                            </div>
+                                            <div class="col col-sm-6 col-md-6 col-lg-6 right-align">
+                                                <p>{{element.rating}}/5</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            {% endfor %}
+                            {% if queryset %}
+                            {% for element in queryset %}
+                            <div class="col col-sm-4 col-md-4 col-lg-2">
+
+                                <div class="wine-card {{ element.colour }}-wine">
+                                    <div class="row plain-element">
+                                        <img src="{{ element.image }}" alt="wine" class="img-restaurants">
+
+                                    </div>
+                                    <div class="row plain-element">
+                                        <h5>{{element.name}}</h5>
+                                        <h6>{{element.strain}} </h6>
+                                        <div class="row plain-element">
+
+                                            <div class="col col-sm-6 col-md-6 col-lg-6 left-align">
+                                                <p>{{element.price}}€ </p>
+                                            </div>
+                                            <div class="col col-sm-6 col-md-6 col-lg-6 right-align">
+                                                <p>{{element.rating}}/5</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            {% endfor %}
+                            {% endif %}
 
                         </div>
-                      </div>
                     </div>
+                    <div class="row plain-element">
 
-                  </div>
-                  {% endfor %}
-                  {% if queryset %}
-                  {% for element in queryset %}
-                  <div class="col s4 m4 l2">
 
-                    <div class="wine-card {{ element.colour }}-wine">
-                      <div class="row plain-element">
-                        <img src="{{ element.image }}" alt="wine" class="img-restaurants">
-
-                      </div>
-                      <div class="row plain-element">
-                        <h5>{{element.name}}</h5>
-                        <h6>{{element.strain}} </h6>
-                        <div class="row plain-element">
-
-                          <div class="col s6 m6 l6 left-align">
-                            <p>{{element.price}}€ </p>
-                          </div>
-                          <div class="col s6 m6 l6 right-align">
-                            <p>{{element.rating}}/5</p>
-                          </div>
-
-                        </div>
-                      </div>
                     </div>
-
-                  </div>
-
-                  {% endfor %}
-                  {% endif %}
-
                 </div>
-              </div>
-              <div class="row plain-element">
-
-
-              </div>
             </div>
-          </div>
 
-          <div class="row row-break"></div>
+            <div class="row row-break"></div>
         </div>
-      </div>
-      <div class="col s12 m12 l1 plain-element"></div>
-
     </div>
+    <div class="col col-sm-12 col-md-12 col-lg-1 plain-element"></div>
 
-
-  </div>
 </div>
+
+
 
 {% endblock %}

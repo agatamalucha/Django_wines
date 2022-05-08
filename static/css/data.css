@@ -268,7 +268,8 @@ letter-spacing: 0.6px;
 
 
 .add-form .input-field {
-  padding:0px;
+  padding:3px;
+  margin:3px;
 }
 
 .input-field.col label {
